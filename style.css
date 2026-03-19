@@ -1,0 +1,208 @@
+/* ── Reset & Base ─────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #fafaf8;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #2d2d2d;
+  --link: #1a1a1a;
+  --link-hover: #555;
+  --border: #e0e0dc;
+  --font: 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'SF Mono', 'Menlo', 'Consolas', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ──────────────────────────────────── */
+h1 {
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5em;
+  color: var(--muted);
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+a:hover {
+  color: var(--link-hover);
+  border-color: var(--muted);
+}
+
+/* ── Layout ──────────────────────────────────────── */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+/* ── Nav ─────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1.5rem 2rem;
+  z-index: 10;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: none;
+}
+
+.nav-link:hover {
+  color: var(--text);
+}
+
+/* ── About ───────────────────────────────────────── */
+.about {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.tagline {
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 2em;
+  font-size: 1.05rem;
+}
+
+.bio p {
+  color: var(--accent);
+}
+
+.links {
+  margin-top: 2em;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.links a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.links a:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+/* ── Writings ────────────────────────────────────── */
+.writings {
+  min-height: 80vh;
+  border-top: 1px solid var(--border);
+}
+
+.writings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.post {
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.post:last-child {
+  border-bottom: none;
+}
+
+.post time {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+.post h3 {
+  margin: 0.4em 0;
+}
+
+.post h3 a {
+  border-bottom: none;
+}
+
+.post h3 a:hover {
+  border-bottom: 1px solid var(--muted);
+}
+
+.post .preview {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.empty-state {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── Footer ──────────────────────────────────────── */
+footer {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  nav { padding: 1rem 1.2rem; }
+  .section { padding: 3.5rem 0; }
+  h1 { font-size: 2rem; }
+}
