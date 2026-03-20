@@ -4,7 +4,7 @@
 
 :root {
   --bg: #0e0e10;
-  --text: #808880;
+  --text: #6e756e;
   --text-secondary: #485048;
   --text-bright: #b0b8b0;
   --border: #1a1e1a;
@@ -51,16 +51,16 @@ nav {
 
 .nav-left a {
   font-size: 0.8rem;
-  color: var(--text-bright);
+  color: #b0a0a0;
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-decoration-color: var(--text-secondary);
+  text-decoration-color: #2a2224;
   transition: color 0.3s, text-decoration-color 0.3s;
 }
 
 .nav-left a:hover {
-  color: #c0d0c0;
-  text-decoration-color: var(--text-bright);
+  color: #d0b8b8;
+  text-decoration-color: #504045;
 }
 
 .nav-right {
@@ -70,7 +70,7 @@ nav {
 }
 
 .social-icon {
-  color: var(--text-bright);
+  color: #b0a0a0;
   text-decoration: none;
   transition: color 0.3s;
   display: flex;
@@ -78,7 +78,7 @@ nav {
 }
 
 .social-icon:hover {
-  color: #c0d0c0;
+  color: #d0b8b8;
 }
 
 /* ── About ───────────────────────────────────────── */

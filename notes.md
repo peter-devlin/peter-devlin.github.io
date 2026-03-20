@@ -3,9 +3,9 @@
 ## Design System
 
 ### Color Roles
-- **Normal text** (body copy, "Hey, I'm", bio text): `var(--text)` = `#808880` — muted, recedes
-- **Emphasis text** ("Peter", headings that should pop): `#90b890` — slightly greener, stands out
-- **Nav link text** (home, about, writing): `var(--text-bright)` = `#b0b8b0` — brighter than body, underlined with `var(--text-secondary)` underline color, brightens on hover
+- **Normal text** (body copy, "Hey, I'm", bio text): `var(--text)` = `#6e756e` — muted, recedes
+- **Emphasis text** ("Peter", headings that should pop): `#90b890` — subtle green tint, stands out
+- **Header link text** (home, about, writing + X/LinkedIn icons): `#b0a0a0` — subtle warm/red tint, underlined. Underline color `#2a2224` (very subtle). Hover: `#d0b8b8` with underline `#504045`. Icons match this color.
 - **Secondary text** (dates, labels, dimmed elements): `var(--text-secondary)` = `#485048`
 - **Background**: `#0e0e10`
 - **Borders**: `#1a1e1a`
@@ -25,7 +25,7 @@
 
 ### Boot Sequence
 - Plays on every page load to `/` (no hash)
-- Skips if URL has `#about` or `#writings`
+- Skips if URL has a hash OR if referrer is the site itself (internal navigation)
 - Types out line by line:
   1. Observing
   2. Generating World Model
