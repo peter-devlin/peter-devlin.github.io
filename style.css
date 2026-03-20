@@ -53,14 +53,14 @@ nav {
   font-size: 0.8rem;
   color: var(--text-bright);
   text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--border);
+  text-underline-offset: 4px;
+  text-decoration-color: var(--text-secondary);
   transition: color 0.3s, text-decoration-color 0.3s;
 }
 
 .nav-left a:hover {
   color: #c0d0c0;
-  text-decoration-color: var(--text-secondary);
+  text-decoration-color: var(--text-bright);
 }
 
 .nav-right {
@@ -96,7 +96,7 @@ h1 {
 }
 
 .greeting {
-  color: var(--text-bright);
+  color: var(--text);
   font-weight: 400;
 }
 
