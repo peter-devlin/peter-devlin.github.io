@@ -8,31 +8,40 @@
 </head>
 <body>
 
+  <div class="scanlines"></div>
+  <div class="noise"></div>
+
   <nav>
-    <a href="#about" class="nav-link">About</a>
-    <a href="#writings" class="nav-link">Writings</a>
+    <span class="nav-prompt">>&nbsp;</span>
+    <a href="#about" class="nav-link">about</a>
+    <a href="#writings" class="nav-link">writings</a>
   </nav>
 
   <section id="about" class="section about">
     <div class="container">
-      <h1>Peter</h1>
-      <p class="tagline"><!-- Add your one-liner here, e.g. "Building things at the intersection of X and Y" --></p>
+      <div class="glitch-wrapper">
+        <h1 class="glitch" data-text="Peter">Peter</h1>
+      </div>
+      <p class="tagline"><!-- Add your one-liner here --></p>
       <div class="bio">
-        <p><!-- Write your bio here. A few sentences about who you are, what you care about, what you're working on. --></p>
-        <p><!-- Second paragraph if you want. Keep it human. --></p>
+        <p><!-- Write your bio here. --></p>
+        <p><!-- Second paragraph if you want. --></p>
       </div>
       <div class="links">
         <!-- Uncomment and fill in the ones you want -->
-        <!-- <a href="https://twitter.com/yourhandle">Twitter</a> -->
-        <!-- <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> -->
-        <!-- <a href="mailto:you@email.com">Email</a> -->
+        <!-- <a href="https://twitter.com/yourhandle">[twitter]</a> -->
+        <!-- <a href="https://linkedin.com/in/yourprofile">[linkedin]</a> -->
+        <!-- <a href="mailto:you@email.com">[email]</a> -->
+      </div>
+      <div class="wire-decoration">
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
   </section>
 
   <section id="writings" class="section writings">
     <div class="container">
-      <h2>Writings</h2>
+      <h2 class="section-header"><span class="blink">_</span> Writings</h2>
       <div class="writings-list">
 
         <!-- TEMPLATE: Copy this block for each new post -->
@@ -44,14 +53,15 @@
         </article>
         -->
 
-        <p class="empty-state">Coming soon.</p>
+        <p class="empty-state">no records found_</p>
 
       </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2026</p>
+    <div class="footer-wire"></div>
+    <p>close this world. open the next.</p>
   </footer>
 
 </body>
