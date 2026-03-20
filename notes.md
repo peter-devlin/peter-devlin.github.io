@@ -57,6 +57,7 @@
 
 ## Content Conventions
 - When Peter provides text with a word followed by a URL in parentheses like `Hummingbird (https://hummingbird.vc/)`, make that word **link text** (inline-link class) pointing to the URL. Do NOT include the parentheses or URL as visible text.
+- When Peter includes style instructions in square brackets like `[emphasis]` or `[large, emphasis]`, apply those styles to the adjacent text. Do NOT include the brackets or their contents as visible text on the site.
 
 ## Quotes to maybe use later
 - "Close this world. Open the next." — Serial Experiments Lain
