@@ -55,14 +55,14 @@ nav {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: #2a2224;
-  text-shadow: 0 0 12px rgba(192, 144, 144, 0.06);
+  text-shadow: 0 0 15px rgba(192, 144, 144, 0.15);
   transition: color 0.3s, text-decoration-color 0.3s, text-shadow 0.4s;
 }
 
 .nav-left a:hover {
   color: #d4a0a0;
   text-decoration-color: #504045;
-  text-shadow: 0 0 18px rgba(192, 144, 144, 0.15);
+  text-shadow: 0 0 25px rgba(192, 144, 144, 0.4);
 }
 
 .nav-right {
@@ -74,7 +74,7 @@ nav {
 .social-icon {
   color: #c09090;
   text-decoration: none;
-  filter: drop-shadow(0 0 8px rgba(192, 144, 144, 0.06));
+  filter: drop-shadow(0 0 10px rgba(192, 144, 144, 0.15));
   transition: color 0.3s, filter 0.4s;
   display: flex;
   align-items: center;
@@ -82,7 +82,7 @@ nav {
 
 .social-icon:hover {
   color: #d4a0a0;
-  filter: drop-shadow(0 0 12px rgba(192, 144, 144, 0.2));
+  filter: drop-shadow(0 0 16px rgba(192, 144, 144, 0.45));
 }
 
 /* ── Home ────────────────────────────────────────── */
@@ -98,13 +98,13 @@ nav {
 .inline-link {
   color: #8090b0;
   text-decoration: none;
-  text-shadow: 0 0 12px rgba(128, 144, 176, 0.06);
+  text-shadow: 0 0 15px rgba(128, 144, 176, 0.15);
   transition: color 0.3s, text-shadow 0.4s;
 }
 
 .inline-link:hover {
   color: #a0b0d0;
-  text-shadow: 0 0 18px rgba(128, 144, 176, 0.18);
+  text-shadow: 0 0 25px rgba(128, 144, 176, 0.4);
 }
 
 .intro {
@@ -346,16 +346,16 @@ body::before {
 }
 
 h1 {
-  text-shadow: 0 0 30px rgba(144, 184, 144, 0.06);
+  text-shadow: 0 0 30px rgba(144, 184, 144, 0.15);
 }
 
 .emphasis {
-  text-shadow: 0 0 20px rgba(144, 184, 144, 0.05);
+  text-shadow: 0 0 15px rgba(144, 184, 144, 0.12);
   transition: text-shadow 0.4s;
 }
 
 .intro p:hover .emphasis {
-  text-shadow: 0 0 20px rgba(144, 184, 144, 0.15);
+  text-shadow: 0 0 25px rgba(144, 184, 144, 0.35);
 }
 
 /* ── Responsive ──────────────────────────────────── */
