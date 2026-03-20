@@ -4,58 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter</title>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
-  <nav>
-    <a href="#" class="nav-name">Peter</a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#writings">Writing</a>
-    </div>
-  </nav>
+  <main>
+    <nav class="fade-in">
+      <a href="#about">about</a>
+      <a href="#writings">writing</a>
+    </nav>
 
-  <section id="about" class="section about">
-    <div class="container">
+    <section id="about" class="about">
       <h1 class="fade-in">Peter</h1>
-      <div class="bio fade-in" style="animation-delay: 0.15s;">
-        <p><!-- Your bio here. A few sentences about who you are, what you care about. --></p>
+      <div class="bio fade-in" style="animation-delay: 0.1s;">
+        <p><!-- Your bio here. --></p>
         <p><!-- Second paragraph if you want. --></p>
       </div>
-      <div class="links fade-in" style="animation-delay: 0.3s;">
+      <div class="elsewhere fade-in" style="animation-delay: 0.2s;">
         <!-- Uncomment the ones you want -->
+        <!-- <span class="elsewhere-label">Elsewhere</span> -->
         <!-- <a href="https://twitter.com/yourhandle">Twitter</a> -->
         <!-- <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> -->
         <!-- <a href="mailto:you@email.com">Email</a> -->
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="writings" class="section writings">
-    <div class="container">
+    <section id="writings" class="writings">
       <h2 class="fade-in">Writing</h2>
-      <div class="writings-list">
 
-        <!-- TEMPLATE: Copy this block for each new post -->
-        <!--
-        <article class="post fade-in">
-          <a href="posts/your-post-slug.html">
-            <span class="post-title">Post Title Here</span>
-            <span class="post-date">Mar 2026</span>
-          </a>
-        </article>
-        -->
+      <!-- TEMPLATE: Copy this block for each new post -->
+      <!--
+      <a href="posts/your-post-slug.html" class="post fade-in">
+        <span class="post-title">Post Title Here</span>
+        <span class="post-date">Mar 2026</span>
+      </a>
+      -->
 
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container">
-      <p>close this world. open the next.</p>
-    </div>
-  </footer>
+    <footer class="fade-in">
+      <p>close this world. open the next<span class="cursor">_</span></p>
+    </footer>
+  </main>
 
   <script>
     const obs = new IntersectionObserver((entries) => {
