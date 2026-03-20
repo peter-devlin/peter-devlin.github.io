@@ -30,10 +30,18 @@ main {
 
 /* ── Nav ─────────────────────────────────────────── */
 nav {
-  padding: 4rem 0 6rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 50;
+  background: rgba(14, 14, 16, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-left {
@@ -72,6 +80,7 @@ nav {
 
 /* ── About ───────────────────────────────────────── */
 .about {
+  padding-top: 8rem;
   padding-bottom: 6rem;
 }
 
