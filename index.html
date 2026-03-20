@@ -4,71 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
-  <div class="scanlines"></div>
-  <div class="noise"></div>
-
   <nav>
-    <span class="nav-prompt">peter@wired:~$&nbsp;</span>
-    <a href="#about" class="nav-link">./about</a>
-    <a href="#writings" class="nav-link">./writings</a>
+    <a href="#" class="nav-name">Peter</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#writings">Writing</a>
+    </div>
   </nav>
 
   <section id="about" class="section about">
     <div class="container">
-      <div class="terminal-line">
-        <span class="prompt">peter@wired:~$</span> <span class="cmd">cat ./about</span>
-      </div>
-      <div class="glitch-wrapper">
-        <h1 class="glitch" data-text="Peter">Peter</h1>
-      </div>
-      <p class="tagline"><!-- Add your one-liner here --></p>
-      <div class="bio">
-        <p><!-- Write your bio here. --></p>
+      <h1 class="fade-in">Peter</h1>
+      <div class="bio fade-in" style="animation-delay: 0.15s;">
+        <p><!-- Your bio here. A few sentences about who you are, what you care about. --></p>
         <p><!-- Second paragraph if you want. --></p>
       </div>
-      <div class="links">
-        <!-- Uncomment and fill in the ones you want -->
-        <!-- <a href="https://twitter.com/yourhandle">[twitter]</a> -->
-        <!-- <a href="https://linkedin.com/in/yourprofile">[linkedin]</a> -->
-        <!-- <a href="mailto:you@email.com">[email]</a> -->
-      </div>
-      <div class="wire-decoration">
-        <span></span><span></span><span></span><span></span><span></span>
+      <div class="links fade-in" style="animation-delay: 0.3s;">
+        <!-- Uncomment the ones you want -->
+        <!-- <a href="https://twitter.com/yourhandle">Twitter</a> -->
+        <!-- <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> -->
+        <!-- <a href="mailto:you@email.com">Email</a> -->
       </div>
     </div>
   </section>
 
   <section id="writings" class="section writings">
     <div class="container">
-      <div class="terminal-line">
-        <span class="prompt">peter@wired:~$</span> <span class="cmd">ls ./writings/</span>
-      </div>
-      <h2 class="section-header"><span class="blink">_</span> Writings</h2>
+      <h2 class="fade-in">Writing</h2>
       <div class="writings-list">
 
         <!-- TEMPLATE: Copy this block for each new post -->
         <!--
-        <article class="post">
-          <time>2026-03-19</time>
-          <h3><a href="posts/your-post-slug.html">Post Title Here</a></h3>
-          <p class="preview">First sentence or two as a preview...</p>
+        <article class="post fade-in">
+          <a href="posts/your-post-slug.html">
+            <span class="post-title">Post Title Here</span>
+            <span class="post-date">Mar 2026</span>
+          </a>
         </article>
         -->
-
-        <p class="empty-state">drwxr-xr-x  0 items</p>
 
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-wire"></div>
-    <p>close this world. open the next.</p>
+    <div class="container">
+      <p>close this world. open the next.</p>
+    </div>
   </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  </script>
 
 </body>
 </html>
