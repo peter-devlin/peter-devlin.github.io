@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Post Title — Peter</title>
-  <link rel="stylesheet" href="../style.css?v=34">
+  <title>Writing — Peter</title>
+  <link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 
   <canvas id="particles"></canvas>
 
   <main>
-    <nav>
+    <nav class="fade-in">
       <div class="nav-left">
         <a href="/">home</a>
         <a href="/about.html">about</a>
@@ -27,23 +27,20 @@
       </div>
     </nav>
 
-    <article style="padding-top: 10rem;">
-      <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Mar 2026</p>
-      <h1>Post Title Here</h1>
-
-      <div class="post-body">
-        <p>Your writing goes here.</p>
-      </div>
-
-      <div style="margin-top: 4rem;">
-        <a href="/writing.html" style="font-size: 0.8rem; color: var(--text-secondary);">&larr; back</a>
-      </div>
-    </article>
+    <section class="writings" style="padding-top: 8rem;">
+      <!-- TEMPLATE: Copy this block for each new post -->
+      <!--
+      <a href="posts/your-post-slug.html" class="post fade-in">
+        <span class="post-title">Post Title Here</span>
+        <span class="post-date">Mar 2026</span>
+      </a>
+      -->
+    </section>
 
     <footer></footer>
   </main>
 
-  <script src="../effects.js"></script>
+  <script src="effects.js"></script>
   <script>initFadeIns(); initEffects();</script>
 
 </body>

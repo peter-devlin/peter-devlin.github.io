@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter</title>
-  <link rel="stylesheet" href="style.css?v=33">
+  <link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 
@@ -24,8 +24,8 @@
     <nav class="fade-in">
       <div class="nav-left">
         <a href="/">home</a>
-        <a href="#about">about</a>
-        <a href="#writings">writing</a>
+        <a href="/about.html">about</a>
+        <a href="/writing.html">writing</a>
       </div>
       <div class="nav-right">
         <a href="https://x.com/AlectryonTech" target="_blank" rel="noopener" aria-label="X" class="social-icon">
@@ -37,7 +37,7 @@
       </div>
     </nav>
 
-    <section id="home" class="home">
+    <section class="home">
       <h1 class="fade-in"><span class="greeting">Hey, I'm </span><span class="emphasis">Peter</span></h1>
       <div class="intro fade-in" style="animation-delay: 0.1s;">
         <p>Investor at <a href="https://www.hummingbird.vc/" target="_blank" rel="noopener" class="inline-link">Hummingbird</a>.</p>
@@ -47,49 +47,12 @@
       </div>
     </section>
 
-    <section id="about" class="about">
-      <h1 class="fade-in about-heading"><span class="greeting">A bit about </span><span class="emphasis">my past:</span></h1>
-      <div class="bio fade-in" style="animation-delay: 0.1s;">
-        <p>Consulted for PE + angels investing in <span class="emphasis">climate</span> through my own company <span class="emphasis">Alectryon</span></p>
-        <p>Tinkered with startup ideas @ <a href="https://www.joinef.com/" target="_blank" rel="noopener" class="inline-link">EF</a> including <span class="emphasis">the future of information consumption</span>, <span class="emphasis">wide spectrum electromagnetic analysis</span>, and <span class="emphasis">desalination catalysts</span></p>
-        <p>Simulated high energy collider experiments with diffusion models (<a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.110.016030" target="_blank" rel="noopener" class="inline-link">paper</a>)</p>
-        <p>Annoyed my physics professors @ St. Johns College, Oxford</p>
-      </div>
-
-      <h1 class="fade-in about-heading" style="margin-top: 3rem;"><span class="emphasis">My interests:</span></h1>
-      <div class="bio fade-in" style="animation-delay: 0.1s;">
-        <p><span class="emphasis">Physics</span> - the current state of academia may sadden me, but it is still the most beautiful discipline</p>
-        <p><span class="emphasis">History</span> - especially the funny and ironic bits</p>
-        <p><span class="emphasis">Politics and current affairs</span> - I grew up in "<span class="emphasis">the swamp</span>" and have been known to dabble in <span class="emphasis">situation monitoring</span></p>
-        <p><span class="emphasis">Philosophy</span> - unlike the consensus view of many in my world, I don't subscribe to consequentialist frameworks: Kantian till I die</p>
-        <p>Cooking the best tacos in the UK - low bar so achievable</p>
-      </div>
-
-      <h1 class="fade-in about-heading" style="margin-top: 3rem;"><span class="emphasis">My hobbies:</span></h1>
-      <div class="bio fade-in" style="animation-delay: 0.1s;">
-        <p><span class="emphasis">Gaming</span> - especially ones that make me question core assumptions I have about the world (e.g. <span class="emphasis">Nier: Automata</span>, <span class="emphasis">SOMA</span>, and <span class="emphasis">Expedition 33</span>) or ones with childhood nostalgia (e.g. <span class="emphasis">Pokémon</span>)</p>
-        <p><span class="emphasis">Magic: The Gathering</span> - such a beautiful game engine</p>
-        <p><span class="emphasis">Pickleball</span> - worst part about living in the UK</p>
-        <p><span class="emphasis">Learning</span> - driven perhaps equally by my hatred of "not-knowing" as it is from any desire for the joy from curiosity</p>
-      </div>
-    </section>
-
-    <section id="writings" class="writings">
-      <!-- TEMPLATE: Copy this block for each new post -->
-      <!--
-      <a href="posts/your-post-slug.html" class="post fade-in">
-        <span class="post-title">Post Title Here</span>
-        <span class="post-date">Mar 2026</span>
-      </a>
-      -->
-
-    </section>
-
     <footer></footer>
   </main>
 
+  <script src="effects.js"></script>
   <script>
-    // Boot sequence — only once per session
+    // Boot sequence — home only
     const boot = document.getElementById('boot');
     const site = document.getElementById('site');
 
@@ -106,40 +69,18 @@
       setTimeout(() => {
         boot.style.display = 'none';
         site.classList.remove('site-hidden');
-        // trigger fade-ins
-        const obs = new IntersectionObserver((entries) => {
-          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+        initFadeIns();
+        initEffects();
       }, 600);
     }
 
-    const hasHash = window.location.hash && window.location.hash !== '';
     const cameFromInternal = document.referrer.includes('peter-devlin.github.io');
 
-    // Show/hide home section based on hash
-    const homeSection = document.getElementById('home');
-    const aboutSection = document.querySelector('.about');
-    function updateHome() {
-      const h = window.location.hash;
-      if (h === '#about' || h === '#writings') {
-        homeSection.style.display = 'none';
-        aboutSection.classList.add('has-top-pad');
-      } else {
-        homeSection.style.display = '';
-        aboutSection.classList.remove('has-top-pad');
-      }
-    }
-    updateHome();
-    window.addEventListener('hashchange', updateHome);
-
-    if (hasHash || cameFromInternal) {
+    if (cameFromInternal) {
       boot.style.display = 'none';
       site.classList.remove('site-hidden');
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+      initFadeIns();
+      initEffects();
     } else {
       lines.forEach(({ id, text, delay }) => {
         setTimeout(() => {
@@ -154,101 +95,6 @@
       });
       setTimeout(showSite, 3200);
     }
-
-    // ── Glow + particles system ──────────────────────
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let W, H, mx = -1000, my = -1000;
-
-    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-    resize();
-    window.addEventListener('resize', resize);
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-    const sparks = [];
-    const glows = []; // active glow sources
-
-    // Color map for element types
-    const GREEN = [130, 170, 130];
-    const RED = [210, 150, 150];
-    const BLUE = [144, 168, 208];
-
-    // Register all glowing elements
-    const glowEls = [];
-    document.querySelectorAll('.emphasis').forEach(el => glowEls.push({ el, color: GREEN }));
-    document.querySelectorAll('.inline-link').forEach(el => glowEls.push({ el, color: BLUE }));
-    document.querySelectorAll('.nav-left a').forEach(el => glowEls.push({ el, color: RED }));
-    document.querySelectorAll('.social-icon').forEach(el => glowEls.push({ el, color: RED }));
-
-    // Emit particles from mouse position near element
-    function emit(x, y, color) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 0.6 + 0.1;
-      sparks.push({
-        x, y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        life: 1,
-        decay: 0.012 + Math.random() * 0.01,
-        r: Math.random() * 1.2 + 0.4,
-        color,
-      });
-    }
-
-    // Track active hover
-    let activeEl = null;
-    let emitTimer = null;
-
-    glowEls.forEach(({ el, color }) => {
-      el.addEventListener('mouseenter', () => {
-        activeEl = { el, color };
-        emitTimer = setInterval(() => {
-          emit(mx, my, color);
-        }, 80);
-      });
-      el.addEventListener('mouseleave', () => {
-        activeEl = null;
-        clearInterval(emitTimer);
-      });
-    });
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-
-      // Draw mouse-centered glow when hovering a colored element
-      if (activeEl) {
-        const c = activeEl.color;
-        const grad = ctx.createRadialGradient(mx, my, 0, mx, my, 80);
-        grad.addColorStop(0, `rgba(${c[0]},${c[1]},${c[2]},0.12)`);
-        grad.addColorStop(0.5, `rgba(${c[0]},${c[1]},${c[2]},0.04)`);
-        grad.addColorStop(1, `rgba(${c[0]},${c[1]},${c[2]},0)`);
-        ctx.fillStyle = grad;
-        ctx.fillRect(mx - 80, my - 80, 160, 160);
-      }
-
-      // Draw particles
-      for (let i = sparks.length - 1; i >= 0; i--) {
-        const s = sparks[i];
-        s.x += s.vx;
-        s.y += s.vy;
-        s.life -= s.decay;
-        if (s.life <= 0) { sparks.splice(i, 1); continue; }
-
-        const a = s.life * 0.4;
-        // soft glow
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r + 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${s.color[0]},${s.color[1]},${s.color[2]},${a * 0.25})`;
-        ctx.fill();
-        // core dot
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${s.color[0]},${s.color[1]},${s.color[2]},${a})`;
-        ctx.fill();
-      }
-      requestAnimationFrame(draw);
-    }
-    draw();
   </script>
 
 </body>
