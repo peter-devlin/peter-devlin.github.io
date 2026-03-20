@@ -87,6 +87,16 @@ nav {
   padding-bottom: 2rem;
 }
 
+.inline-link {
+  color: #8090b0;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.inline-link:hover {
+  color: #a0b0d0;
+}
+
 .subtitle {
   font-size: 1.2rem;
   font-weight: 300;

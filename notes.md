@@ -6,6 +6,7 @@
 - **Normal text** (body copy, "Hey, I'm", bio text): `var(--text)` = `#6e756e` — muted, recedes
 - **Emphasis text** ("Peter", headings that should pop): `#90b890` — subtle green tint, stands out
 - **Header link text** (home, about, writing + X/LinkedIn icons): `#b0a0a0` — subtle warm/red tint, underlined. Underline color `#2a2224` (very subtle). Hover: `#d0b8b8` with underline `#504045`. Icons match this color.
+- **Link text** (inline hyperlinks within body copy): `#8090b0` — subtle blue tint. Hover: `#a0b0d0`. No underline.
 - **Secondary text** (dates, labels, dimmed elements): `var(--text-secondary)` = `#485048`
 - **Background**: `#0e0e10`
 - **Borders**: `#1a1e1a`
@@ -53,6 +54,9 @@
 - Live: https://peter-devlin.github.io
 - Push from local, GitHub Pages auto-deploys
 - CDN caches aggressively — bump `?v=N` on style.css link when changing CSS
+
+## Content Conventions
+- When Peter provides text with a word followed by a URL in parentheses like `Hummingbird (https://hummingbird.vc/)`, make that word **link text** (inline-link class) pointing to the URL. Do NOT include the parentheses or URL as visible text.
 
 ## Quotes to maybe use later
 - "Close this world. Open the next." — Serial Experiments Lain
