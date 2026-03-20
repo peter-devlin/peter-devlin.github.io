@@ -155,6 +155,10 @@ h1 {
   text-shadow: none;
 }
 
+.about-heading {
+  margin-bottom: 0.5rem;
+}
+
 .bio {
   margin-bottom: 2rem;
 }
