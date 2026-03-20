@@ -69,14 +69,12 @@ nav {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: #2a2224;
-  text-shadow: 0 0 10px rgba(210, 140, 140, 0.3);
-  transition: color 0.3s, text-decoration-color 0.3s, text-shadow 0.3s;
+  transition: color 0.3s, text-decoration-color 0.3s;
 }
 
 .nav-left a:hover {
   color: #e0a8a8;
   text-decoration-color: #504045;
-  text-shadow: 0 0 12px rgba(224, 160, 160, 0.6), 0 0 30px rgba(224, 160, 160, 0.3), 0 0 60px rgba(224, 160, 160, 0.1);
 }
 
 .nav-right {
@@ -88,15 +86,13 @@ nav {
 .social-icon {
   color: #c09090;
   text-decoration: none;
-  filter: drop-shadow(0 0 8px rgba(210, 140, 140, 0.3));
-  transition: color 0.3s, filter 0.3s;
+  transition: color 0.3s;
   display: flex;
   align-items: center;
 }
 
 .social-icon:hover {
   color: #e0a8a8;
-  filter: drop-shadow(0 0 10px rgba(224, 160, 160, 0.6)) drop-shadow(0 0 25px rgba(224, 160, 160, 0.3));
 }
 
 /* ── Home ────────────────────────────────────────── */
@@ -107,25 +103,21 @@ nav {
 
 .emphasis {
   color: #82aa82;
-  text-shadow: 0 0 10px rgba(130, 170, 130, 0.3);
-  transition: text-shadow 0.3s, color 0.3s;
+  transition: color 0.3s;
 }
 
 .emphasis:hover {
   color: #a0d0a0;
-  text-shadow: 0 0 12px rgba(130, 170, 130, 0.6), 0 0 30px rgba(130, 170, 130, 0.3), 0 0 60px rgba(130, 170, 130, 0.1);
 }
 
 .inline-link {
   color: #90a8d0;
   text-decoration: none;
-  text-shadow: 0 0 10px rgba(144, 168, 208, 0.3);
-  transition: color 0.3s, text-shadow 0.3s;
+  transition: color 0.3s;
 }
 
 .inline-link:hover {
   color: #b0c8f0;
-  text-shadow: 0 0 12px rgba(144, 168, 208, 0.6), 0 0 30px rgba(144, 168, 208, 0.3), 0 0 60px rgba(144, 168, 208, 0.1);
 }
 
 .intro {
@@ -155,7 +147,6 @@ h1 {
   color: #82aa82;
   letter-spacing: -0.02em;
   margin-bottom: 2rem;
-  text-shadow: 0 0 20px rgba(130, 170, 130, 0.25), 0 0 50px rgba(130, 170, 130, 0.08);
 }
 
 .greeting {
