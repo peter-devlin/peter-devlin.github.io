@@ -81,9 +81,14 @@ nav {
   color: #d4a0a0;
 }
 
+/* ── Home ────────────────────────────────────────── */
+.home {
+  padding-top: 8rem;
+  padding-bottom: 2rem;
+}
+
 /* ── About ───────────────────────────────────────── */
 .about {
-  padding-top: 8rem;
   padding-bottom: 6rem;
 }
 
