@@ -98,7 +98,7 @@ nav {
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 300;
   color: var(--text);
   margin-top: 0.5rem;
@@ -132,7 +132,7 @@ h1 {
 
 .bio p {
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--text);
   margin-bottom: 1em;
 }
@@ -240,7 +240,7 @@ a:hover {
 
 .post-body p {
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 1.4em;
 }
 
