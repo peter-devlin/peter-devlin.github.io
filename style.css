@@ -51,7 +51,7 @@ nav {
 
 .nav-left a {
   font-size: 0.8rem;
-  color: #b0a0a0;
+  color: #c09090;
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: #2a2224;
@@ -59,7 +59,7 @@ nav {
 }
 
 .nav-left a:hover {
-  color: #d0b8b8;
+  color: #d4a0a0;
   text-decoration-color: #504045;
 }
 
@@ -70,7 +70,7 @@ nav {
 }
 
 .social-icon {
-  color: #b0a0a0;
+  color: #c09090;
   text-decoration: none;
   transition: color 0.3s;
   display: flex;
@@ -78,7 +78,7 @@ nav {
 }
 
 .social-icon:hover {
-  color: #d0b8b8;
+  color: #d4a0a0;
 }
 
 /* ── About ───────────────────────────────────────── */
