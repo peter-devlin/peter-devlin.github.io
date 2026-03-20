@@ -51,13 +51,16 @@ nav {
 
 .nav-left a {
   font-size: 0.8rem;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.3s;
+  color: var(--text-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
+  transition: color 0.3s, text-decoration-color 0.3s;
 }
 
 .nav-left a:hover {
-  color: var(--text-bright);
+  color: #c0d0c0;
+  text-decoration-color: var(--text-secondary);
 }
 
 .nav-right {
@@ -67,7 +70,7 @@ nav {
 }
 
 .social-icon {
-  color: var(--text-secondary);
+  color: var(--text-bright);
   text-decoration: none;
   transition: color 0.3s;
   display: flex;
@@ -75,7 +78,7 @@ nav {
 }
 
 .social-icon:hover {
-  color: var(--text-bright);
+  color: #c0d0c0;
 }
 
 /* ── About ───────────────────────────────────────── */
@@ -87,9 +90,14 @@ nav {
 h1 {
   font-size: 1.6rem;
   font-weight: 500;
-  color: var(--text-bright);
+  color: #90b890;
   letter-spacing: -0.02em;
   margin-bottom: 2rem;
+}
+
+.greeting {
+  color: var(--text-bright);
+  font-weight: 400;
 }
 
 .bio {
