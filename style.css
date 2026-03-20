@@ -87,6 +87,13 @@ nav {
   padding-bottom: 2rem;
 }
 
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--text);
+  margin-top: 0.5rem;
+}
+
 /* ── About ───────────────────────────────────────── */
 .about {
   padding-bottom: 6rem;
