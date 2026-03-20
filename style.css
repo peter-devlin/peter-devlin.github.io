@@ -69,12 +69,14 @@ nav {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: #2a2224;
-  transition: color 0.3s, text-decoration-color 0.3s;
+  text-shadow: 0 0 10px rgba(192, 144, 144, 0.25);
+  transition: color 0.3s, text-decoration-color 0.3s, text-shadow 0.3s;
 }
 
 .nav-left a:hover {
   color: #e0a8a8;
   text-decoration-color: #504045;
+  text-shadow: 0 0 14px rgba(224, 160, 160, 0.5), 0 0 35px rgba(224, 160, 160, 0.2);
 }
 
 .nav-right {
@@ -86,13 +88,15 @@ nav {
 .social-icon {
   color: #c09090;
   text-decoration: none;
-  transition: color 0.3s;
+  filter: drop-shadow(0 0 8px rgba(192, 144, 144, 0.25));
+  transition: color 0.3s, filter 0.3s;
   display: flex;
   align-items: center;
 }
 
 .social-icon:hover {
   color: #e0a8a8;
+  filter: drop-shadow(0 0 12px rgba(224, 160, 160, 0.5)) drop-shadow(0 0 30px rgba(224, 160, 160, 0.2));
 }
 
 /* ── Home ────────────────────────────────────────── */
@@ -103,21 +107,25 @@ nav {
 
 .emphasis {
   color: #82aa82;
-  transition: color 0.3s;
+  text-shadow: 0 0 10px rgba(130, 170, 130, 0.25);
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
 .emphasis:hover {
   color: #a0d0a0;
+  text-shadow: 0 0 14px rgba(130, 170, 130, 0.5), 0 0 35px rgba(130, 170, 130, 0.2);
 }
 
 .inline-link {
   color: #90a8d0;
   text-decoration: none;
-  transition: color 0.3s;
+  text-shadow: 0 0 10px rgba(144, 168, 208, 0.25);
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
 .inline-link:hover {
   color: #b0c8f0;
+  text-shadow: 0 0 14px rgba(144, 168, 208, 0.5), 0 0 35px rgba(144, 168, 208, 0.2);
 }
 
 .intro {
