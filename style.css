@@ -32,17 +32,41 @@ main {
 nav {
   padding: 4rem 0 6rem;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
   gap: 1.5rem;
 }
 
-nav a {
+.nav-left a {
   font-size: 0.8rem;
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.3s;
 }
 
-nav a:hover {
+.nav-left a:hover {
+  color: var(--text-bright);
+}
+
+.nav-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-icon {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.social-icon:hover {
   color: var(--text-bright);
 }
 
@@ -70,29 +94,6 @@ h1 {
   margin-bottom: 1em;
 }
 
-.elsewhere {
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
-  padding-top: 1rem;
-}
-
-.elsewhere-label {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  margin-right: 0.3rem;
-}
-
-.elsewhere a {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.elsewhere a:hover {
-  color: var(--text-bright);
-}
 
 /* ── Writings ────────────────────────────────────── */
 .writings {
