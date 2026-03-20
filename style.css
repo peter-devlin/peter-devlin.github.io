@@ -4,10 +4,10 @@
 
 :root {
   --bg: #0e0e10;
-  --text: #888890;
-  --text-secondary: #505058;
-  --text-bright: #b8b8c0;
-  --border: #1a1a20;
+  --text: #808880;
+  --text-secondary: #485048;
+  --text-bright: #b0b8b0;
+  --border: #1a1e1a;
   --font: 'IBM Plex Mono', 'SF Mono', monospace;
 }
 
@@ -181,11 +181,11 @@ a {
 }
 
 a:hover {
-  color: #dddde0;
+  color: #c0d0c0;
 }
 
 ::selection {
-  background: rgba(136, 136, 144, 0.2);
+  background: rgba(128, 160, 128, 0.2);
   color: #fff;
 }
 
