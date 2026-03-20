@@ -92,6 +92,10 @@ nav {
   padding-bottom: 6rem;
 }
 
+.about.has-top-pad {
+  padding-top: 8rem;
+}
+
 h1 {
   font-size: 1.6rem;
   font-weight: 500;
