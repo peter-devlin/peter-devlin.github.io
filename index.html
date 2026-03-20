@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter</title>
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -82,30 +82,18 @@
       }, 600);
     }
 
-    if (sessionStorage.getItem('booted')) {
-      boot.style.display = 'none';
-      site.classList.remove('site-hidden');
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-    } else {
-      lines.forEach(({ id, text, delay }) => {
-        setTimeout(() => {
-          const el = document.getElementById(id);
-          let i = 0;
-          const type = setInterval(() => {
-            el.textContent = text.slice(0, i + 1);
-            i++;
-            if (i >= text.length) clearInterval(type);
-          }, 30);
-        }, delay);
-      });
+    lines.forEach(({ id, text, delay }) => {
       setTimeout(() => {
-        sessionStorage.setItem('booted', '1');
-        showSite();
-      }, 3200);
-    }
+        const el = document.getElementById(id);
+        let i = 0;
+        const type = setInterval(() => {
+          el.textContent = text.slice(0, i + 1);
+          i++;
+          if (i >= text.length) clearInterval(type);
+        }, 30);
+      }, delay);
+    });
+    setTimeout(showSite, 3200);
   </script>
 
 </body>
