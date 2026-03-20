@@ -23,7 +23,7 @@ body {
 }
 
 main {
-  max-width: 560px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -221,7 +221,7 @@ a:hover {
 }
 
 .boot-lines {
-  max-width: 560px;
+  max-width: 720px;
   padding: 0 2rem;
 }
 
