@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter</title>
-  <link rel="stylesheet" href="style.css?v=28">
+  <link rel="stylesheet" href="style.css?v=29">
 </head>
 <body>
 
@@ -133,10 +133,9 @@
       setTimeout(showSite, 3200);
     }
 
-    // ── Particles ──────────────────────────────────
+    // ── Particles that emit from colored words on hover ──
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
-    let mouse = { x: -1000, y: -1000 };
     let W, H;
 
     function resize() {
@@ -145,57 +144,83 @@
     }
     resize();
     window.addEventListener('resize', resize);
-    document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 
-    const particles = [];
-    const COUNT = 40;
-    const colors = [
-      [130, 170, 130],  // green
-      [192, 144, 144],  // red
-      [144, 168, 208],  // blue
-    ];
+    const sparks = [];
 
-    for (let i = 0; i < COUNT; i++) {
-      const c = colors[Math.floor(Math.random() * colors.length)];
-      particles.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        r: Math.random() * 1.5 + 0.5,
-        baseAlpha: Math.random() * 0.15 + 0.03,
-        alpha: 0,
-        color: c,
-      });
+    function emit(el, color) {
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width * Math.random();
+      const cy = rect.top + rect.height * 0.5;
+      for (let i = 0; i < 3; i++) {
+        sparks.push({
+          x: cx, y: cy,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.8) * 1.5,
+          life: 1,
+          decay: 0.008 + Math.random() * 0.012,
+          r: Math.random() * 2 + 1,
+          color: color,
+        });
+      }
     }
+
+    // Attach hover emitters to colored elements
+    const colorMap = {
+      emphasis: [130, 170, 130],
+      'inline-link': [144, 168, 208],
+      'nav-left-a': [192, 144, 144],
+      'social-icon': [192, 144, 144],
+    };
+
+    document.querySelectorAll('.emphasis').forEach(el => {
+      el.addEventListener('mouseenter', function emitter() {
+        const iv = setInterval(() => emit(el, colorMap.emphasis), 60);
+        el.addEventListener('mouseleave', () => clearInterval(iv), { once: true });
+      });
+    });
+
+    document.querySelectorAll('.inline-link').forEach(el => {
+      el.addEventListener('mouseenter', function() {
+        const iv = setInterval(() => emit(el, colorMap['inline-link']), 60);
+        el.addEventListener('mouseleave', () => clearInterval(iv), { once: true });
+      });
+    });
+
+    document.querySelectorAll('.nav-left a').forEach(el => {
+      el.addEventListener('mouseenter', function() {
+        const iv = setInterval(() => emit(el, colorMap['nav-left-a']), 60);
+        el.addEventListener('mouseleave', () => clearInterval(iv), { once: true });
+      });
+    });
+
+    document.querySelectorAll('.social-icon').forEach(el => {
+      el.addEventListener('mouseenter', function() {
+        const iv = setInterval(() => emit(el, colorMap['social-icon']), 60);
+        el.addEventListener('mouseleave', () => clearInterval(iv), { once: true });
+      });
+    });
 
     function draw() {
       ctx.clearRect(0, 0, W, H);
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = W;
-        if (p.x > W) p.x = 0;
-        if (p.y < 0) p.y = H;
-        if (p.y > H) p.y = 0;
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vy -= 0.01; // slight float upward
+        s.life -= s.decay;
+        if (s.life <= 0) { sparks.splice(i, 1); continue; }
 
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const proximity = Math.max(0, 1 - dist / 200);
-        p.alpha += ((p.baseAlpha + proximity * 0.35) - p.alpha) * 0.05;
-
+        const a = s.life * 0.7;
+        // glow
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.color[0]},${p.color[1]},${p.color[2]},${p.alpha})`;
+        ctx.arc(s.x, s.y, s.r + 3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.color[0]},${s.color[1]},${s.color[2]},${a * 0.3})`;
         ctx.fill();
-
-        if (proximity > 0.1) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r + 4 * proximity, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${p.color[0]},${p.color[1]},${p.color[2]},${p.alpha * 0.3 * proximity})`;
-          ctx.fill();
-        }
+        // core
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.color[0]},${s.color[1]},${s.color[2]},${a})`;
+        ctx.fill();
       }
       requestAnimationFrame(draw);
     }
