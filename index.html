@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter</title>
-  <link rel="stylesheet" href="style.css?v=31">
+  <link rel="stylesheet" href="style.css?v=32">
 </head>
 <body>
 
@@ -38,7 +38,7 @@
     </nav>
 
     <section id="home" class="home">
-      <h1 class="fade-in"><span class="greeting">Hey, I'm </span>Peter</h1>
+      <h1 class="fade-in"><span class="greeting">Hey, I'm </span><span class="emphasis">Peter</span></h1>
       <div class="intro fade-in" style="animation-delay: 0.1s;">
         <p>Investor at <a href="https://www.hummingbird.vc/" target="_blank" rel="noopener" class="inline-link">Hummingbird</a>.</p>
         <p>Interested in <span class="emphasis">chips</span>, <span class="emphasis">space</span>, <span class="emphasis">robotics</span>, <span class="emphasis">neurotech</span>, <span class="emphasis">energy</span>, <span class="emphasis">foundational ai research</span>, <span class="emphasis">manufacturing</span>, <span class="emphasis">world models</span>, <span class="emphasis">climate</span>, <span class="emphasis">ai agents</span>, <span class="emphasis">"dynamism"</span>, <span class="emphasis">ai safety</span>, and everything <span class="emphasis">sci-fi</span>.</p>
@@ -157,9 +157,10 @@
 
     // Register all glowing elements
     const glowEls = [];
-    document.querySelectorAll('.emphasis, h1:not(.greeting)').forEach(el => glowEls.push({ el, color: GREEN }));
+    document.querySelectorAll('.emphasis').forEach(el => glowEls.push({ el, color: GREEN }));
     document.querySelectorAll('.inline-link').forEach(el => glowEls.push({ el, color: BLUE }));
-    document.querySelectorAll('.nav-left a, .social-icon').forEach(el => glowEls.push({ el, color: RED }));
+    document.querySelectorAll('.nav-left a').forEach(el => glowEls.push({ el, color: RED }));
+    document.querySelectorAll('.social-icon').forEach(el => glowEls.push({ el, color: RED }));
 
     // Emit particles from mouse position near element
     function emit(x, y, color) {

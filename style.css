@@ -53,9 +53,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   z-index: 50;
-  background: rgba(14, 14, 16, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(14, 14, 16, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .nav-left {
