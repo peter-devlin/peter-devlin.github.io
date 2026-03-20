@@ -101,11 +101,16 @@ nav {
   color: #a0b0d0;
 }
 
-.subtitle {
+.intro {
+  margin-top: 1.5rem;
+}
+
+.intro p {
   font-size: 1rem;
   font-weight: 300;
   color: var(--text);
-  margin-top: 0.5rem;
+  margin-bottom: 1em;
+  line-height: 1.9;
 }
 
 /* ── About ───────────────────────────────────────── */
