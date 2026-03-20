@@ -14,8 +14,8 @@
 ### Typography
 - Font: IBM Plex Mono (monospace) — this IS the terminal aesthetic, kept subtle
 - Body: 14px, font-weight 300
-- h1 (name): 1.6rem, font-weight 500
-- Nav links: 0.8rem, underlined (underline always visible, brightens on hover)
+- **Large** (h1 "Hey, I'm Peter"): 1.6rem, font-weight 500
+- **Small** (nav links home/about/writing): 0.8rem, underlined (underline always visible, brightens on hover)
 
 ### Layout
 - Content max-width: 720px, centered
