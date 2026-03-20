@@ -200,6 +200,54 @@ a:hover {
   margin-bottom: 1.4em;
 }
 
+/* ── Boot sequence ────────────────────────────────── */
+.boot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+
+.boot-done {
+  opacity: 0;
+}
+
+.boot-lines {
+  max-width: 560px;
+  padding: 0 2rem;
+}
+
+.boot-lines p {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 2;
+  min-height: 1.6em;
+}
+
+.boot-lines p:last-child {
+  color: var(--text-bright);
+}
+
+.site-hidden {
+  opacity: 0;
+}
+
+.site-hidden.site-hidden {
+  animation: site-reveal 0.6s ease forwards;
+  animation-play-state: paused;
+}
+
+main:not(.site-hidden) {
+  opacity: 1;
+}
+
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 600px) {
   main { padding: 0 1.5rem; }

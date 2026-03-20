@@ -4,11 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter</title>
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
-  <main>
+  <div id="boot" class="boot">
+    <div class="boot-lines">
+      <p id="b0"></p>
+      <p id="b1"></p>
+      <p id="b2"></p>
+      <p id="b3"></p>
+    </div>
+  </div>
+
+  <main id="site" class="site-hidden">
     <nav class="fade-in">
       <a href="#about">about</a>
       <a href="#writings">writing</a>
@@ -44,10 +53,54 @@
   </main>
 
   <script>
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    // Boot sequence — only once per session
+    const boot = document.getElementById('boot');
+    const site = document.getElementById('site');
+
+    const lines = [
+      { id: 'b0', text: 'loading kernel...',      delay: 0 },
+      { id: 'b1', text: 'mounting /dev/mind',     delay: 400 },
+      { id: 'b2', text: 'establishing connection', delay: 900 },
+      { id: 'b3', text: 'ready.',                  delay: 1500 },
+    ];
+
+    function showSite() {
+      boot.classList.add('boot-done');
+      setTimeout(() => {
+        boot.style.display = 'none';
+        site.classList.remove('site-hidden');
+        // trigger fade-ins
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+      }, 600);
+    }
+
+    if (sessionStorage.getItem('booted')) {
+      boot.style.display = 'none';
+      site.classList.remove('site-hidden');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    } else {
+      lines.forEach(({ id, text, delay }) => {
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          let i = 0;
+          const type = setInterval(() => {
+            el.textContent = text.slice(0, i + 1);
+            i++;
+            if (i >= text.length) clearInterval(type);
+          }, 30);
+        }, delay);
+      });
+      setTimeout(() => {
+        sessionStorage.setItem('booted', '1');
+        showSite();
+      }, 2400);
+    }
   </script>
 
 </body>
