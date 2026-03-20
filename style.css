@@ -8,15 +8,16 @@
 :root {
   --bg: #0a0a0c;
   --bg-elevated: #111116;
-  --text: #c8c8c8;
-  --text-dim: #5a5a6a;
-  --text-bright: #e8e8f0;
-  --accent: #d4a0a0;
-  --accent-glow: #e07070;
-  --green: #70b070;
-  --amber: #c0a050;
+  --text: #8fbc8f;
+  --text-dim: #4a7a4a;
+  --text-bright: #b8deb8;
+  --accent: #8fbc8f;
+  --accent-glow: #a0d4a0;
+  --green: #8fbc8f;
+  --green-bright: #b8deb8;
+  --green-dim: #3a5a3a;
   --blue: #6080b0;
-  --border: #1e1e28;
+  --border: #1a2a1a;
   --font: 'IBM Plex Mono', 'SF Mono', 'Consolas', monospace;
   --font-display: 'Space Mono', monospace;
 }
@@ -84,7 +85,7 @@ h1 {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-bright);
+  color: var(--green-bright);
 }
 
 h2 {
@@ -92,7 +93,7 @@ h2 {
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--text);
   margin-bottom: 2em;
 }
 
@@ -106,18 +107,18 @@ p {
 }
 
 a {
-  color: var(--accent);
+  color: var(--green-bright);
   text-decoration: none;
   transition: color 0.3s, text-shadow 0.3s;
 }
 
 a:hover {
-  color: var(--accent-glow);
-  text-shadow: 0 0 8px rgba(224, 112, 112, 0.4);
+  color: #c0f0c0;
+  text-shadow: 0 0 8px rgba(143, 188, 143, 0.5);
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--green);
   color: var(--bg);
 }
 
@@ -141,28 +142,42 @@ nav {
   padding: 1.2rem 2rem;
   z-index: 50;
   display: flex;
-  gap: 1.5rem;
+  gap: 0.8rem;
   align-items: center;
   background: linear-gradient(to bottom, var(--bg) 60%, transparent);
 }
 
 .nav-prompt {
   color: var(--green);
-  font-size: 0.85rem;
-  opacity: 0.6;
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
 
 .nav-link {
   font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: lowercase;
+  letter-spacing: 0.05em;
   color: var(--text-dim);
   border: none;
 }
 
 .nav-link:hover {
-  color: var(--accent);
-  text-shadow: 0 0 6px rgba(224, 112, 112, 0.3);
+  color: var(--green-bright);
+  text-shadow: 0 0 6px rgba(143, 188, 143, 0.4);
+}
+
+/* ── Terminal prompt lines ───────────────────────── */
+.terminal-line {
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.prompt {
+  color: var(--green);
+  opacity: 0.7;
+}
+
+.cmd {
+  color: var(--green-bright);
 }
 
 /* ── Glitch effect ───────────────────────────────── */
@@ -187,11 +202,11 @@ nav {
 }
 
 .glitch::before {
-  color: var(--accent-glow);
+  color: #c0f0c0;
   z-index: -1;
   animation: glitch-1 4s ease-in-out infinite;
   clip-path: inset(20% 0 30% 0);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .glitch::after {
@@ -199,7 +214,7 @@ nav {
   z-index: -2;
   animation: glitch-2 4s ease-in-out infinite;
   clip-path: inset(50% 0 10% 0);
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 @keyframes glitch-1 {
@@ -218,8 +233,8 @@ nav {
 
 @keyframes glitch-shift {
   0%, 95%, 100% { text-shadow: none; }
-  96% { text-shadow: -2px 0 var(--accent-glow), 2px 0 var(--blue); }
-  97% { text-shadow: 2px 0 var(--accent-glow), -2px 0 var(--blue); }
+  96% { text-shadow: -2px 0 #c0f0c0, 2px 0 var(--blue); }
+  97% { text-shadow: 2px 0 #c0f0c0, -2px 0 var(--blue); }
   98% { text-shadow: none; }
 }
 
@@ -271,7 +286,7 @@ nav {
 }
 
 .links a:hover {
-  color: var(--accent);
+  color: var(--green-bright);
 }
 
 /* ── Wire decoration ─────────────────────────────── */
@@ -279,14 +294,14 @@ nav {
   margin-top: 4rem;
   display: flex;
   gap: 6px;
-  opacity: 0.15;
+  opacity: 0.2;
 }
 
 .wire-decoration span {
   display: block;
   width: 40px;
   height: 1px;
-  background: var(--accent);
+  background: var(--green);
   animation: wire-pulse 3s ease-in-out infinite;
 }
 
@@ -303,7 +318,7 @@ nav {
 /* ── Blink cursor ────────────────────────────────── */
 .blink {
   animation: blink-cursor 1.2s step-end infinite;
-  color: var(--green);
+  color: var(--green-bright);
 }
 
 @keyframes blink-cursor {
@@ -314,7 +329,7 @@ nav {
 /* ── Section header ──────────────────────────────── */
 .section-header {
   font-family: var(--font);
-  color: var(--text-dim);
+  color: var(--text);
   border-bottom: 1px solid var(--border);
   padding-bottom: 1em;
 }
@@ -349,8 +364,8 @@ nav {
 }
 
 .post:hover {
-  border-color: rgba(212, 160, 160, 0.2);
-  box-shadow: 0 0 20px rgba(212, 160, 160, 0.03);
+  border-color: rgba(143, 188, 143, 0.25);
+  box-shadow: 0 0 20px rgba(143, 188, 143, 0.04);
 }
 
 .post time {
@@ -364,11 +379,11 @@ nav {
 }
 
 .post h3 a {
-  color: var(--text-bright);
+  color: var(--green-bright);
 }
 
 .post h3 a:hover {
-  color: var(--accent);
+  color: #c0f0c0;
 }
 
 .post .preview {
@@ -381,7 +396,7 @@ nav {
 .empty-state {
   color: var(--text-dim);
   font-size: 0.85rem;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 /* ── Footer ──────────────────────────────────────── */
@@ -401,7 +416,7 @@ footer p {
   font-size: 0.7rem;
   color: var(--text-dim);
   letter-spacing: 0.15em;
-  opacity: 0.4;
+  opacity: 0.5;
   font-style: italic;
 }
 
@@ -413,8 +428,8 @@ body::before {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(ellipse at 30% 20%, rgba(212, 160, 160, 0.02) 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 80%, rgba(96, 128, 176, 0.02) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 30% 20%, rgba(143, 188, 143, 0.02) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(96, 128, 176, 0.015) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
   animation: ambient-drift 20s ease-in-out infinite alternate;
@@ -442,4 +457,5 @@ body::before {
   nav { padding: 1rem 1.2rem; }
   .section { padding: 4rem 0; }
   .container { padding: 0 1.2rem; }
+  .nav-prompt { display: none; }
 }
