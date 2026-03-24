@@ -72,7 +72,7 @@ function initReveal() {
   const els = Array.from(document.querySelectorAll('[data-reveal]'));
   els.sort((a, b) => +a.dataset.reveal - +b.dataset.reveal);
 
-  const CHAR_SPEED = 4;
+  const CHAR_SPEED = 6;
   const GAP = 40;
 
   // Prep all elements: wrap chars, calculate
