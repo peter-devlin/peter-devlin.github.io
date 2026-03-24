@@ -73,59 +73,52 @@ function initReveal() {
   els.sort((a, b) => +a.dataset.reveal - +b.dataset.reveal);
 
   let delay = 0;
+  const CHAR_SPEED = 8; // ms per char — faster than tooltip (18ms)
+  const GAP = 80; // ms between elements
+
   els.forEach(el => {
-    const isType = el.classList.contains('reveal-type');
+    const savedHTML = el.innerHTML;
+    const textOnly = el.textContent.replace(/\s+/g, ' ').trim();
+    const hasSVG = el.querySelector('svg');
 
-    if (isType) {
-      // Store original HTML, clear it, then type it out
-      const originalHTML = el.innerHTML;
-      // For typing, we only type the visible text, preserving inner HTML after
-      const textOnly = el.textContent;
-      const hasInnerHTML = originalHTML !== textOnly;
-
-      if (hasInnerHTML) {
-        // Complex element (like h1 with spans) — just fade in
-        setTimeout(() => {
-          el.style.transition = 'opacity 0.3s ease';
-          el.classList.add('revealed');
-        }, delay);
-        delay += 200;
-      } else {
-        // Simple text — type it
-        el.textContent = '';
+    if (hasSVG || !textOnly) {
+      // Icons/SVGs — just pop in
+      setTimeout(() => {
         el.style.opacity = '1';
-        setTimeout(() => {
-          let i = 0;
-          const timer = setInterval(() => {
-            el.textContent = textOnly.slice(0, i + 1);
-            i++;
-            if (i >= textOnly.length) {
-              clearInterval(timer);
-              el.classList.add('revealed');
-            }
-          }, 30);
-        }, delay);
-        delay += textOnly.length * 30 + 100;
-      }
+        el.classList.add('revealed');
+      }, delay);
+      delay += 100;
     } else {
-      // Fade element
-      setTimeout(() => el.classList.add('revealed'), delay);
-      delay += 120;
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.textContent = '';
+        let i = 0;
+        const timer = setInterval(() => {
+          el.textContent = textOnly.slice(0, i + 1);
+          i++;
+          if (i >= textOnly.length) {
+            clearInterval(timer);
+            el.innerHTML = savedHTML;
+            el.classList.add('revealed');
+          }
+        }, CHAR_SPEED);
+      }, delay);
+      delay += textOnly.length * CHAR_SPEED + GAP;
     }
   });
 }
 
 function initFadeIns() {
-  let delay = 0;
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), delay);
-        delay += 80;
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  // Auto-assign data-reveal to fade-in elements if not already set
+  let idx = 0;
+  document.querySelectorAll('.fade-in').forEach(el => {
+    if (!el.hasAttribute('data-reveal')) {
+      el.setAttribute('data-reveal', idx);
+      el.classList.add('reveal-type');
+      idx++;
+    }
+  });
+  initReveal();
 }
 
 function initEffects() {
