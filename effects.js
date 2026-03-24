@@ -69,10 +69,20 @@ function initTooltips() {
 }
 
 function initReveal() {
+  const pageKey = 'revealed_' + location.pathname;
   const els = Array.from(document.querySelectorAll('[data-reveal]'));
   els.sort((a, b) => +a.dataset.reveal - +b.dataset.reveal);
 
-  const CHAR_SPEED = 6;
+  // Already revealed this session — show everything instantly
+  if (sessionStorage.getItem(pageKey)) {
+    els.forEach(el => {
+      el.style.opacity = '1';
+      el.classList.add('revealed');
+    });
+    return;
+  }
+
+  const CHAR_SPEED = 5;
   const GAP = 40;
 
   // Prep all elements: wrap chars, calculate
@@ -117,7 +127,8 @@ function initReveal() {
   // Run queue sequentially — each starts only after previous finishes
   function runNext(idx) {
     if (idx >= queue.length) {
-      // Leave cursor blinking after the last element
+      sessionStorage.setItem(pageKey, '1');
+      // Cursor stays blinking after last element
       return;
     }
     const item = queue[idx];
@@ -140,7 +151,7 @@ function initReveal() {
         if (i >= item.chars.length) {
           clearInterval(timer);
           item.el.classList.add('revealed');
-          cursor.remove();
+          // Keep cursor at end of this element, move to next
           setTimeout(() => runNext(idx + 1), GAP);
         }
       }, item.speed);
