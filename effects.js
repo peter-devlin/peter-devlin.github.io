@@ -117,7 +117,7 @@ function initReveal() {
   // Run queue sequentially — each starts only after previous finishes
   function runNext(idx) {
     if (idx >= queue.length) {
-      cursor.remove();
+      // Leave cursor blinking after the last element
       return;
     }
     const item = queue[idx];
