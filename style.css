@@ -426,6 +426,13 @@ main:not(.site-hidden) {
   transform: translateY(0);
 }
 
+/* ── Scanline flicker ─────────────────────────────── */
+@keyframes scanline-flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.96; }
+  100% { opacity: 1; }
+}
+
 /* ── CRT flicker ─────────────────────────────────── */
 main {
   animation: crt-flicker 6s ease-in-out infinite;
