@@ -43,8 +43,11 @@ function initTooltips() {
     tip.style.minHeight = tipH + 'px';
 
     el.addEventListener('mouseenter', (e) => {
+      // Don't show tooltip until parent is revealed
+      const parent = el.closest('[data-reveal]') || el.closest('.fade-in');
+      if (parent && !parent.classList.contains('revealed')) return;
+
       tip.textContent = '';
-      // Position using full size
       const left = Math.min(Math.max(e.clientX - tipW / 2, 8), window.innerWidth - tipW - 8);
       let top = e.clientY - tipH - 16;
       if (top < 8) top = e.clientY + 20;

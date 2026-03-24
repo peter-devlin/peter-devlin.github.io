@@ -363,8 +363,7 @@ main:not(.site-hidden) {
 }
 
 /* ── Lain atmosphere ─────────────────────────────── */
-body::before {
-  content: '';
+.crt-vignette {
   position: fixed;
   top: -2px;
   left: -2px;
@@ -372,11 +371,10 @@ body::before {
   height: calc(100% + 4px);
   pointer-events: none;
   z-index: 300;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.45) 100%);
 }
 
-body::after {
-  content: '';
+.crt-scanlines {
   position: fixed;
   top: 0;
   left: 0;
@@ -388,7 +386,7 @@ body::after {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.12) 2px,
     rgba(0, 0, 0, 0.04) 4px
   );
 }
@@ -430,15 +428,16 @@ body::after {
 
 /* ── CRT flicker ─────────────────────────────────── */
 main {
-  animation: crt-flicker 8s ease-in-out infinite;
+  animation: crt-flicker 6s ease-in-out infinite;
 }
 
 @keyframes crt-flicker {
-  0%, 94%, 100% { opacity: 1; }
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.92; }
+  94% { opacity: 1; }
   95% { opacity: 0.94; }
   96% { opacity: 1; }
   97% { opacity: 0.96; }
-  98% { opacity: 1; }
 }
 
 /* ── Responsive ──────────────────────────────────── */
