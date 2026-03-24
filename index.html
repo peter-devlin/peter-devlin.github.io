@@ -72,7 +72,7 @@
       setTimeout(() => {
         boot.style.display = 'none';
         site.classList.remove('site-hidden');
-        initFadeIns();
+        initReveal();
         initEffects(); initTooltips();
       }, 600);
     }
@@ -82,7 +82,7 @@
     if (cameFromInternal) {
       boot.style.display = 'none';
       site.classList.remove('site-hidden');
-      initFadeIns();
+      initReveal();
       initEffects(); initTooltips();
     } else {
       lines.forEach(({ id, text, delay }) => {
