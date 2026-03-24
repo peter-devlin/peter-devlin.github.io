@@ -114,6 +114,11 @@ nav {
 .emphasis {
   position: relative;
   cursor: default;
+  pointer-events: none;
+}
+
+.revealed .emphasis, .emphasis.revealed {
+  pointer-events: auto;
 }
 
 .emphasis:hover {
