@@ -72,64 +72,71 @@ function initReveal() {
   const els = Array.from(document.querySelectorAll('[data-reveal]'));
   els.sort((a, b) => +a.dataset.reveal - +b.dataset.reveal);
 
-  let delay = 0;
   const CHAR_SPEED = 2;
   const GAP = 30;
 
-  els.forEach(el => {
+  // Prep all elements: wrap chars, calculate
+  const queue = els.map(el => {
     const hasSVG = el.querySelector('svg');
     const textLen = el.textContent.replace(/\s+/g, ' ').trim().length;
 
     if (hasSVG || !textLen) {
-      setTimeout(() => {
-        el.style.opacity = '1';
-        el.classList.add('revealed');
-      }, delay);
-      delay += 100;
-    } else {
-      // Wrap every character in the DOM in a hidden span, then reveal one by one
-      const chars = [];
-      function wrapText(node) {
-        if (node.nodeType === 3) { // text node
-          const text = node.textContent;
-          if (!text) return;
-          const frag = document.createDocumentFragment();
-          for (let c = 0; c < text.length; c++) {
-            const span = document.createElement('span');
-            span.textContent = text[c];
-            span.style.opacity = '0';
-            chars.push(span);
-            frag.appendChild(span);
-          }
-          node.parentNode.replaceChild(frag, node);
-        } else if (node.nodeType === 1) { // element node
-          // Skip tooltip spans
-          if (node.classList && node.classList.contains('emphasis-tooltip')) return;
-          // Process children (copy to array first since we modify DOM)
-          Array.from(node.childNodes).forEach(wrapText);
-        }
-      }
-      wrapText(el);
-      el.style.opacity = '1';
-
-      const speed = Math.max(CHAR_SPEED, Math.min(8, 600 / chars.length));
-
-      setTimeout(() => {
-        let i = 0;
-        const timer = setInterval(() => {
-          if (i < chars.length) {
-            chars[i].style.opacity = '1';
-            i++;
-          }
-          if (i >= chars.length) {
-            clearInterval(timer);
-            el.classList.add('revealed');
-          }
-        }, speed);
-      }, delay);
-      delay += chars.length * speed + GAP;
+      return { el, type: 'pop' };
     }
+
+    const chars = [];
+    function wrapText(node) {
+      if (node.nodeType === 3) {
+        const text = node.textContent;
+        if (!text) return;
+        const frag = document.createDocumentFragment();
+        for (let c = 0; c < text.length; c++) {
+          const span = document.createElement('span');
+          span.textContent = text[c];
+          span.style.opacity = '0';
+          chars.push(span);
+          frag.appendChild(span);
+        }
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1) {
+        if (node.classList && node.classList.contains('emphasis-tooltip')) return;
+        Array.from(node.childNodes).forEach(wrapText);
+      }
+    }
+    wrapText(el);
+    el.style.opacity = '1';
+
+    const speed = Math.max(CHAR_SPEED, Math.min(8, 600 / chars.length));
+    return { el, type: 'type', chars, speed };
   });
+
+  // Run queue sequentially — each starts only after previous finishes
+  function runNext(idx) {
+    if (idx >= queue.length) return;
+    const item = queue[idx];
+
+    if (item.type === 'pop') {
+      item.el.style.opacity = '1';
+      item.el.classList.add('revealed');
+      setTimeout(() => runNext(idx + 1), 50);
+    } else {
+      let i = 0;
+      const timer = setInterval(() => {
+        // Reveal multiple chars per tick for very long elements
+        const batch = Math.max(1, Math.floor(1 / item.speed * 4));
+        for (let b = 0; b < batch && i < item.chars.length; b++, i++) {
+          item.chars[i].style.opacity = '1';
+        }
+        if (i >= item.chars.length) {
+          clearInterval(timer);
+          item.el.classList.add('revealed');
+          setTimeout(() => runNext(idx + 1), GAP);
+        }
+      }, item.speed);
+    }
+  }
+
+  runNext(0);
 }
 
 function initFadeIns() {
