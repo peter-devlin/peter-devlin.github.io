@@ -5,19 +5,24 @@ function initTooltips() {
     const tip = el.querySelector('.emphasis-tooltip');
     if (!tip) return;
 
-    el.addEventListener('mouseenter', () => { tip.style.opacity = '1'; });
-    el.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
-    el.addEventListener('mousemove', (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
+    function positionTip(e) {
       const tipW = tip.offsetWidth;
-      // Keep tooltip above cursor, centered horizontally, clamped to viewport
-      let left = x - tipW / 2;
+      const tipH = tip.offsetHeight;
+      let left = e.clientX - tipW / 2;
+      let top = e.clientY - tipH - 16;
       if (left < 8) left = 8;
       if (left + tipW > window.innerWidth - 8) left = window.innerWidth - tipW - 8;
+      if (top < 8) top = e.clientY + 20;
       tip.style.left = left + 'px';
-      tip.style.top = (y - tip.offsetHeight - 14) + 'px';
+      tip.style.top = top + 'px';
+    }
+
+    el.addEventListener('mouseenter', (e) => {
+      positionTip(e);
+      tip.style.opacity = '1';
     });
+    el.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+    el.addEventListener('mousemove', positionTip);
   });
 }
 
