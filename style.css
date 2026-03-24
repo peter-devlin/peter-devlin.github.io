@@ -376,6 +376,25 @@ body::after {
   );
 }
 
+/* ── Page reveal ─────────────────────────────────── */
+.reveal-type, .reveal-fade {
+  opacity: 0;
+}
+
+.reveal-type.revealed {
+  opacity: 1;
+}
+
+.reveal-fade {
+  transform: translateY(4px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.reveal-fade.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 600px) {
   main { padding: 0 1.5rem; }

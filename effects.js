@@ -68,6 +68,53 @@ function initTooltips() {
   });
 }
 
+function initReveal() {
+  const els = Array.from(document.querySelectorAll('[data-reveal]'));
+  els.sort((a, b) => +a.dataset.reveal - +b.dataset.reveal);
+
+  let delay = 0;
+  els.forEach(el => {
+    const isType = el.classList.contains('reveal-type');
+
+    if (isType) {
+      // Store original HTML, clear it, then type it out
+      const originalHTML = el.innerHTML;
+      // For typing, we only type the visible text, preserving inner HTML after
+      const textOnly = el.textContent;
+      const hasInnerHTML = originalHTML !== textOnly;
+
+      if (hasInnerHTML) {
+        // Complex element (like h1 with spans) — just fade in
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.3s ease';
+          el.classList.add('revealed');
+        }, delay);
+        delay += 200;
+      } else {
+        // Simple text — type it
+        el.textContent = '';
+        el.style.opacity = '1';
+        setTimeout(() => {
+          let i = 0;
+          const timer = setInterval(() => {
+            el.textContent = textOnly.slice(0, i + 1);
+            i++;
+            if (i >= textOnly.length) {
+              clearInterval(timer);
+              el.classList.add('revealed');
+            }
+          }, 30);
+        }, delay);
+        delay += textOnly.length * 30 + 100;
+      }
+    } else {
+      // Fade element
+      setTimeout(() => el.classList.add('revealed'), delay);
+      delay += 120;
+    }
+  });
+}
+
 function initFadeIns() {
   let delay = 0;
   const obs = new IntersectionObserver((entries) => {
