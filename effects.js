@@ -73,8 +73,8 @@ function initReveal() {
   els.sort((a, b) => +a.dataset.reveal - +b.dataset.reveal);
 
   let delay = 0;
-  const CHAR_SPEED = 8;
-  const GAP = 60;
+  const CHAR_SPEED = 2;
+  const GAP = 30;
 
   els.forEach(el => {
     const hasSVG = el.querySelector('svg');
@@ -92,7 +92,7 @@ function initReveal() {
       el.style.clipPath = 'inset(0 100% 0 0)';
       setTimeout(() => {
         let progress = 0;
-        const duration = textLen * CHAR_SPEED;
+        const duration = Math.min(textLen * CHAR_SPEED, 600);
         const start = performance.now();
         function step(now) {
           progress = Math.min((now - start) / duration, 1);
@@ -106,7 +106,7 @@ function initReveal() {
         }
         requestAnimationFrame(step);
       }, delay);
-      delay += textLen * CHAR_SPEED + GAP;
+      delay += Math.min(textLen * CHAR_SPEED, 600) + GAP;
     }
   });
 }
