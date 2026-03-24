@@ -73,37 +73,40 @@ function initReveal() {
   els.sort((a, b) => +a.dataset.reveal - +b.dataset.reveal);
 
   let delay = 0;
-  const CHAR_SPEED = 8; // ms per char — faster than tooltip (18ms)
-  const GAP = 80; // ms between elements
+  const CHAR_SPEED = 8;
+  const GAP = 60;
 
   els.forEach(el => {
-    const savedHTML = el.innerHTML;
-    const textOnly = el.textContent.replace(/\s+/g, ' ').trim();
     const hasSVG = el.querySelector('svg');
+    const textLen = el.textContent.replace(/\s+/g, ' ').trim().length;
 
-    if (hasSVG || !textOnly) {
-      // Icons/SVGs — just pop in
+    if (hasSVG || !textLen) {
       setTimeout(() => {
         el.style.opacity = '1';
         el.classList.add('revealed');
       }, delay);
       delay += 100;
     } else {
+      // Use CSS clip-path to reveal left-to-right, preserving all HTML/styling
+      el.style.opacity = '1';
+      el.style.clipPath = 'inset(0 100% 0 0)';
       setTimeout(() => {
-        el.style.opacity = '1';
-        el.textContent = '';
-        let i = 0;
-        const timer = setInterval(() => {
-          el.textContent = textOnly.slice(0, i + 1);
-          i++;
-          if (i >= textOnly.length) {
-            clearInterval(timer);
-            el.innerHTML = savedHTML;
+        let progress = 0;
+        const duration = textLen * CHAR_SPEED;
+        const start = performance.now();
+        function step(now) {
+          progress = Math.min((now - start) / duration, 1);
+          el.style.clipPath = `inset(0 ${(1 - progress) * 100}% 0 0)`;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.style.clipPath = 'none';
             el.classList.add('revealed');
           }
-        }, CHAR_SPEED);
+        }
+        requestAnimationFrame(step);
       }, delay);
-      delay += textOnly.length * CHAR_SPEED + GAP;
+      delay += textLen * CHAR_SPEED + GAP;
     }
   });
 }
