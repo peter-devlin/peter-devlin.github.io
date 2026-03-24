@@ -48,7 +48,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 2rem 3rem;
+  padding: 2rem 4.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -443,7 +443,7 @@ main {
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 600px) {
   main { padding: 0 1.5rem; }
-  nav { padding: 3rem 0 4rem; }
+  nav { padding: 1.5rem 2rem; }
   h1 { font-size: 1.3rem; }
   .post { flex-direction: column; gap: 0.15rem; }
   .post-date { margin-left: 0; }
