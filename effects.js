@@ -72,8 +72,8 @@ function initReveal() {
   const els = Array.from(document.querySelectorAll('[data-reveal]'));
   els.sort((a, b) => +a.dataset.reveal - +b.dataset.reveal);
 
-  const CHAR_SPEED = 2;
-  const GAP = 30;
+  const CHAR_SPEED = 4;
+  const GAP = 40;
 
   // Prep all elements: wrap chars, calculate
   const queue = els.map(el => {
@@ -110,9 +110,16 @@ function initReveal() {
     return { el, type: 'type', chars, speed };
   });
 
+  // Typing cursor element
+  const cursor = document.createElement('span');
+  cursor.className = 'typing-cursor';
+
   // Run queue sequentially — each starts only after previous finishes
   function runNext(idx) {
-    if (idx >= queue.length) return;
+    if (idx >= queue.length) {
+      cursor.remove();
+      return;
+    }
     const item = queue[idx];
 
     if (item.type === 'pop') {
@@ -120,16 +127,20 @@ function initReveal() {
       item.el.classList.add('revealed');
       setTimeout(() => runNext(idx + 1), 50);
     } else {
+      // Place cursor at the start of this element
+      item.el.appendChild(cursor);
       let i = 0;
       const timer = setInterval(() => {
-        // Reveal multiple chars per tick for very long elements
-        const batch = Math.max(1, Math.floor(1 / item.speed * 4));
-        for (let b = 0; b < batch && i < item.chars.length; b++, i++) {
+        if (i < item.chars.length) {
           item.chars[i].style.opacity = '1';
+          // Move cursor after the last revealed char
+          item.chars[i].after(cursor);
+          i++;
         }
         if (i >= item.chars.length) {
           clearInterval(timer);
           item.el.classList.add('revealed');
+          cursor.remove();
           setTimeout(() => runNext(idx + 1), GAP);
         }
       }, item.speed);
