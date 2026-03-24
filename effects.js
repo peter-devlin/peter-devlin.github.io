@@ -129,6 +129,7 @@ function initReveal() {
     if (idx >= queue.length) {
       sessionStorage.setItem(pageKey, '1');
       setTimeout(() => {
+        cursor.style.animation = 'none';
         cursor.style.transition = 'opacity 0.5s ease';
         cursor.style.opacity = '0';
         setTimeout(() => cursor.remove(), 500);
@@ -220,6 +221,9 @@ function initEffects() {
 
   glowEls.forEach(({ el, color }) => {
     el.addEventListener('mouseenter', () => {
+      // Don't glow/emit until parent element is revealed
+      const parent = el.closest('[data-reveal]') || el.closest('.fade-in');
+      if (parent && !parent.classList.contains('revealed')) return;
       activeEl = { el, color };
       emitTimer = setInterval(() => { emit(mx, my, color); }, 80);
     });

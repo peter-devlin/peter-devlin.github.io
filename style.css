@@ -372,7 +372,7 @@ body::before {
   height: calc(100% + 4px);
   pointer-events: none;
   z-index: 300;
-  background: radial-gradient(ellipse at center, transparent 65%, rgba(0, 0, 0, 0.25) 100%);
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
 }
 
 body::after {
@@ -388,7 +388,7 @@ body::after {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.08) 2px,
     rgba(0, 0, 0, 0.04) 4px
   );
 }
@@ -434,10 +434,11 @@ main {
 }
 
 @keyframes crt-flicker {
-  0%, 97%, 100% { opacity: 1; }
-  97.5% { opacity: 0.97; }
+  0%, 94%, 100% { opacity: 1; }
+  95% { opacity: 0.94; }
+  96% { opacity: 1; }
+  97% { opacity: 0.96; }
   98% { opacity: 1; }
-  98.5% { opacity: 0.98; }
 }
 
 /* ── Responsive ──────────────────────────────────── */
