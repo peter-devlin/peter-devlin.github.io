@@ -25,10 +25,32 @@ function initTooltips() {
     const fullText = tip.textContent;
     let typeTimer = null;
 
+    // Invisible sizer to pre-calculate tooltip dimensions
+    const sizer = tip.cloneNode(true);
+    sizer.style.visibility = 'hidden';
+    sizer.style.opacity = '0';
+    sizer.style.position = 'fixed';
+    sizer.style.top = '0';
+    sizer.style.left = '0';
+    sizer.textContent = fullText;
+    document.body.appendChild(sizer);
+    const tipW = sizer.offsetWidth;
+    const tipH = sizer.offsetHeight;
+    sizer.remove();
+
+    // Lock the tooltip size so it doesn't reflow during typing
+    tip.style.width = tipW + 'px';
+    tip.style.minHeight = tipH + 'px';
+
     el.addEventListener('mouseenter', (e) => {
-      positionTip(e);
-      tip.style.opacity = '1';
       tip.textContent = '';
+      // Position using full size
+      const left = Math.min(Math.max(e.clientX - tipW / 2, 8), window.innerWidth - tipW - 8);
+      let top = e.clientY - tipH - 16;
+      if (top < 8) top = e.clientY + 20;
+      tip.style.left = left + 'px';
+      tip.style.top = top + 'px';
+      tip.style.opacity = '1';
       let i = 0;
       clearInterval(typeTimer);
       typeTimer = setInterval(() => {
