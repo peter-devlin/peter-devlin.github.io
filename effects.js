@@ -44,8 +44,10 @@ function initTooltips() {
 
     el.addEventListener('mouseenter', (e) => {
       // Don't show tooltip until parent is revealed
-      const parent = el.closest('[data-reveal]') || el.closest('.fade-in');
+      const parent = el.closest('[data-reveal]') || el.closest('.fade-in') || el.closest('.revealed');
       if (parent && !parent.classList.contains('revealed')) return;
+      // Also check if any ancestor has revealed
+      if (!el.closest('.revealed')) return;
 
       tip.textContent = '';
       const left = Math.min(Math.max(e.clientX - tipW / 2, 8), window.innerWidth - tipW - 8);
