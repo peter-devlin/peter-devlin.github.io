@@ -87,26 +87,36 @@ function initReveal() {
       }, delay);
       delay += 100;
     } else {
-      // Use CSS clip-path to reveal left-to-right, preserving all HTML/styling
-      el.style.opacity = '1';
-      el.style.clipPath = 'inset(0 100% 0 0)';
+      const textOnly = el.textContent.replace(/\s+/g, ' ').trim();
+      // Create typing overlay that matches the element's style
+      const overlay = document.createElement(el.tagName === 'H1' ? 'h1' : 'p');
+      overlay.className = el.className;
+      overlay.style.cssText = el.style.cssText;
+      overlay.style.opacity = '1';
+      overlay.style.position = 'absolute';
+      overlay.style.top = el.offsetTop + 'px';
+      overlay.style.left = el.offsetLeft + 'px';
+      overlay.style.width = el.offsetWidth + 'px';
+      overlay.textContent = '';
+      el.parentNode.style.position = 'relative';
+      el.parentNode.appendChild(overlay);
+
+      const speed = Math.max(CHAR_SPEED, Math.min(8, 600 / textOnly.length));
+
       setTimeout(() => {
-        let progress = 0;
-        const duration = Math.min(textLen * CHAR_SPEED, 600);
-        const start = performance.now();
-        function step(now) {
-          progress = Math.min((now - start) / duration, 1);
-          el.style.clipPath = `inset(0 ${(1 - progress) * 100}% 0 0)`;
-          if (progress < 1) {
-            requestAnimationFrame(step);
-          } else {
-            el.style.clipPath = 'none';
+        let i = 0;
+        const timer = setInterval(() => {
+          overlay.textContent = textOnly.slice(0, i + 1);
+          i++;
+          if (i >= textOnly.length) {
+            clearInterval(timer);
+            overlay.remove();
+            el.style.opacity = '1';
             el.classList.add('revealed');
           }
-        }
-        requestAnimationFrame(step);
+        }, speed);
       }, delay);
-      delay += Math.min(textLen * CHAR_SPEED, 600) + GAP;
+      delay += textOnly.length * speed + GAP;
     }
   });
 }
