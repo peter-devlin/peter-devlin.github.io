@@ -65,7 +65,7 @@ nav {
 
 .nav-left a {
   font-size: 0.8rem;
-  color: #c09090;
+  color: #c08080;
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: #2a2224;
@@ -74,7 +74,7 @@ nav {
 }
 
 .nav-left a:hover {
-  color: #e0a8a8;
+  color: #e09898;
   text-decoration-color: #504045;
   text-shadow: 0 0 14px rgba(224, 160, 160, 0.5), 0 0 35px rgba(224, 160, 160, 0.2);
 }
@@ -86,7 +86,7 @@ nav {
 }
 
 .social-icon {
-  color: #c09090;
+  color: #c08080;
   text-decoration: none;
   filter: drop-shadow(0 0 8px rgba(192, 144, 144, 0.25));
   transition: color 0.3s, filter 0.3s;
@@ -95,7 +95,7 @@ nav {
 }
 
 .social-icon:hover {
-  color: #e0a8a8;
+  color: #e09898;
   filter: drop-shadow(0 0 12px rgba(224, 160, 160, 0.5)) drop-shadow(0 0 30px rgba(224, 160, 160, 0.2));
 }
 
