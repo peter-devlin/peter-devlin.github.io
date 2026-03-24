@@ -128,7 +128,11 @@ function initReveal() {
   function runNext(idx) {
     if (idx >= queue.length) {
       sessionStorage.setItem(pageKey, '1');
-      // Cursor stays blinking after last element
+      setTimeout(() => {
+        cursor.style.transition = 'opacity 0.5s ease';
+        cursor.style.opacity = '0';
+        setTimeout(() => cursor.remove(), 500);
+      }, 3000);
       return;
     }
     const item = queue[idx];
