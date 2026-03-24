@@ -22,18 +22,39 @@ function initTooltips() {
       tip.style.top = top + 'px';
     }
 
+    const fullText = tip.textContent;
+    let typeTimer = null;
+
     el.addEventListener('mouseenter', (e) => {
       positionTip(e);
       tip.style.opacity = '1';
+      tip.textContent = '';
+      let i = 0;
+      clearInterval(typeTimer);
+      typeTimer = setInterval(() => {
+        tip.textContent = fullText.slice(0, i + 1);
+        i++;
+        if (i >= fullText.length) clearInterval(typeTimer);
+      }, 12);
     });
-    el.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+    el.addEventListener('mouseleave', () => {
+      tip.style.opacity = '0';
+      clearInterval(typeTimer);
+      tip.textContent = '';
+    });
     el.addEventListener('mousemove', positionTip);
   });
 }
 
 function initFadeIns() {
+  let delay = 0;
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), delay);
+        delay += 80;
+      }
+    });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 }
