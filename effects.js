@@ -57,7 +57,7 @@ function initTooltips() {
         tip.textContent = fullText.slice(0, i + 1);
         i++;
         if (i >= fullText.length) clearInterval(typeTimer);
-      }, 12);
+      }, 18);
     });
     el.addEventListener('mouseleave', () => {
       tip.style.opacity = '0';
