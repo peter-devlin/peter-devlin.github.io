@@ -87,36 +87,47 @@ function initReveal() {
       }, delay);
       delay += 100;
     } else {
-      const textOnly = el.textContent.replace(/\s+/g, ' ').trim();
-      // Create typing overlay that matches the element's style
-      const overlay = document.createElement(el.tagName === 'H1' ? 'h1' : 'p');
-      overlay.className = el.className;
-      overlay.style.cssText = el.style.cssText;
-      overlay.style.opacity = '1';
-      overlay.style.position = 'absolute';
-      overlay.style.top = el.offsetTop + 'px';
-      overlay.style.left = el.offsetLeft + 'px';
-      overlay.style.width = el.offsetWidth + 'px';
-      overlay.textContent = '';
-      el.parentNode.style.position = 'relative';
-      el.parentNode.appendChild(overlay);
+      // Wrap every character in the DOM in a hidden span, then reveal one by one
+      const chars = [];
+      function wrapText(node) {
+        if (node.nodeType === 3) { // text node
+          const text = node.textContent;
+          if (!text) return;
+          const frag = document.createDocumentFragment();
+          for (let c = 0; c < text.length; c++) {
+            const span = document.createElement('span');
+            span.textContent = text[c];
+            span.style.opacity = '0';
+            chars.push(span);
+            frag.appendChild(span);
+          }
+          node.parentNode.replaceChild(frag, node);
+        } else if (node.nodeType === 1) { // element node
+          // Skip tooltip spans
+          if (node.classList && node.classList.contains('emphasis-tooltip')) return;
+          // Process children (copy to array first since we modify DOM)
+          Array.from(node.childNodes).forEach(wrapText);
+        }
+      }
+      wrapText(el);
+      el.style.opacity = '1';
 
-      const speed = Math.max(CHAR_SPEED, Math.min(8, 600 / textOnly.length));
+      const speed = Math.max(CHAR_SPEED, Math.min(8, 600 / chars.length));
 
       setTimeout(() => {
         let i = 0;
         const timer = setInterval(() => {
-          overlay.textContent = textOnly.slice(0, i + 1);
-          i++;
-          if (i >= textOnly.length) {
+          if (i < chars.length) {
+            chars[i].style.opacity = '1';
+            i++;
+          }
+          if (i >= chars.length) {
             clearInterval(timer);
-            overlay.remove();
-            el.style.opacity = '1';
             el.classList.add('revealed');
           }
         }, speed);
       }, delay);
-      delay += textOnly.length * speed + GAP;
+      delay += chars.length * speed + GAP;
     }
   });
 }
