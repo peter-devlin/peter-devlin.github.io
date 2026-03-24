@@ -111,9 +111,40 @@ nav {
   transition: color 0.3s, text-shadow 0.3s;
 }
 
+.emphasis {
+  position: relative;
+  cursor: default;
+}
+
 .emphasis:hover {
   color: #a0d0a0;
   text-shadow: 0 0 14px rgba(130, 170, 130, 0.5), 0 0 35px rgba(130, 170, 130, 0.2);
+}
+
+.emphasis-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #161618;
+  border: 1px solid #1e2e1e;
+  color: #808880;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  padding: 0.6rem 0.9rem;
+  border-radius: 4px;
+  white-space: normal;
+  width: max-content;
+  max-width: 300px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 200;
+  font-style: italic;
+}
+
+.emphasis:hover .emphasis-tooltip {
+  opacity: 1;
 }
 
 .inline-link {
