@@ -11,7 +11,7 @@
   --font: 'IBM Plex Mono', 'SF Mono', monospace;
 }
 
-html { scroll-behavior: smooth; background: #0e0e10; overscroll-behavior: none; }
+html { scroll-behavior: smooth; background: #0e0e10; }
 
 body {
   font-family: var(--font);
