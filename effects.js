@@ -151,20 +151,23 @@ function initReveal() {
       // Place cursor at the start of this element
       item.el.appendChild(cursor);
       let i = 0;
-      const timer = setInterval(() => {
-        if (i < item.chars.length) {
+      const startTime = performance.now();
+      function tick() {
+        const elapsed = performance.now() - startTime;
+        const target = Math.min(Math.floor(elapsed / item.speed), item.chars.length);
+        while (i < target) {
           item.chars[i].style.opacity = '1';
-          // Move cursor after the last revealed char
           item.chars[i].after(cursor);
           i++;
         }
         if (i >= item.chars.length) {
-          clearInterval(timer);
           item.el.classList.add('revealed');
-          // Keep cursor at end of this element, move to next
           setTimeout(() => runNext(idx + 1), GAP);
+        } else {
+          requestAnimationFrame(tick);
         }
-      }, item.speed);
+      }
+      requestAnimationFrame(tick);
     }
   }
 
