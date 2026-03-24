@@ -371,7 +371,7 @@ main:not(.site-hidden) {
   height: calc(100% + 4px);
   pointer-events: none;
   z-index: 300;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.45) 100%);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.015) 0%, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .crt-scanlines {
@@ -386,8 +386,8 @@ main:not(.site-hidden) {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.12) 2px,
-    rgba(0, 0, 0, 0.04) 4px
+    rgba(255, 255, 255, 0.02) 2px,
+    transparent 4px
   );
 }
 
