@@ -55,6 +55,11 @@
 - Push from local, GitHub Pages auto-deploys
 - CDN caches aggressively — bump `?v=N` on style.css link when changing CSS
 
+## Capitalization Rule
+- Lowercase "i" everywhere (i'm, i have, i don't, etc.)
+- EXCEPTION: Bible quotes keep original capitalization ("I will build My church")
+- This is a deliberate stylistic choice, not a typo
+
 ## Content Conventions
 - When Peter provides text with a word followed by a URL in parentheses like `Hummingbird (https://hummingbird.vc/)`, make that word **link text** (inline-link class) pointing to the URL. Do NOT include the parentheses or URL as visible text.
 - When Peter includes style instructions in square brackets like `[emphasis]` or `[large, emphasis]`, apply those styles to the adjacent text. Do NOT include the brackets or their contents as visible text on the site.
