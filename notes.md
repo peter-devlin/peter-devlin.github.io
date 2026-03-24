@@ -56,8 +56,12 @@
 - CDN caches aggressively — bump `?v=N` on style.css link when changing CSS
 
 ## Capitalization Rule
-- Lowercase "i" everywhere (i'm, i have, i don't, etc.)
-- EXCEPTION: Bible quotes keep original capitalization ("I will build My church")
+- Lowercase EVERYTHING including proper nouns, "i", acronyms, place names, game titles, people's names
+- EXCEPTIONS that stay capitalized:
+  - Peter (the name)
+  - Alectryon (the company)
+  - SOMA (stylistic choice of the game)
+  - Bible quotes ("I will build My church")
 - This is a deliberate stylistic choice, not a typo
 
 ## Content Conventions
