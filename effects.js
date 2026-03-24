@@ -1,4 +1,25 @@
-// Shared fade-in + glow/particle system
+// Shared fade-in + glow/particle + tooltip system
+
+function initTooltips() {
+  document.querySelectorAll('.emphasis').forEach(el => {
+    const tip = el.querySelector('.emphasis-tooltip');
+    if (!tip) return;
+
+    el.addEventListener('mouseenter', () => { tip.style.opacity = '1'; });
+    el.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+    el.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      const tipW = tip.offsetWidth;
+      // Keep tooltip above cursor, centered horizontally, clamped to viewport
+      let left = x - tipW / 2;
+      if (left < 8) left = 8;
+      if (left + tipW > window.innerWidth - 8) left = window.innerWidth - tipW - 8;
+      tip.style.left = left + 'px';
+      tip.style.top = (y - tip.offsetHeight - 14) + 'px';
+    });
+  });
+}
 
 function initFadeIns() {
   const obs = new IntersectionObserver((entries) => {

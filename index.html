@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter</title>
-  <link rel="stylesheet" href="style.css?v=36">
+  <link rel="stylesheet" href="style.css?v=37">
 </head>
 <body>
 
@@ -73,7 +73,7 @@
         boot.style.display = 'none';
         site.classList.remove('site-hidden');
         initFadeIns();
-        initEffects();
+        initEffects(); initTooltips();
       }, 600);
     }
 
@@ -83,7 +83,7 @@
       boot.style.display = 'none';
       site.classList.remove('site-hidden');
       initFadeIns();
-      initEffects();
+      initEffects(); initTooltips();
     } else {
       lines.forEach(({ id, text, delay }) => {
         setTimeout(() => {

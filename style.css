@@ -122,10 +122,7 @@ nav {
 }
 
 .emphasis-tooltip {
-  position: absolute;
-  bottom: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
   background: #161618;
   border: 1px solid #1e2e1e;
   color: #808880;
@@ -138,13 +135,9 @@ nav {
   max-width: 300px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.15s ease;
   z-index: 200;
   font-style: italic;
-}
-
-.emphasis:hover .emphasis-tooltip {
-  opacity: 1;
 }
 
 .inline-link {
