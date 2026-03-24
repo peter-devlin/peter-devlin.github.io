@@ -2,8 +2,13 @@
 
 function initTooltips() {
   document.querySelectorAll('.emphasis').forEach(el => {
-    const tip = el.querySelector('.emphasis-tooltip');
-    if (!tip) return;
+    const tipSrc = el.querySelector('.emphasis-tooltip');
+    if (!tipSrc) return;
+
+    // Move tooltip to body so it's not affected by parent transforms
+    const tip = tipSrc.cloneNode(true);
+    document.body.appendChild(tip);
+    tipSrc.remove();
 
     function positionTip(e) {
       const tipW = tip.offsetWidth;
