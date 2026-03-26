@@ -87,6 +87,9 @@ function initReveal() {
     return;
   }
 
+  // Mark as seen immediately so returning mid-animation skips to fully revealed
+  sessionStorage.setItem(pageKey, '1');
+
   const CHAR_SPEED = 5;
   const GAP = 40;
 
@@ -132,7 +135,6 @@ function initReveal() {
   // Run queue sequentially — each starts only after previous finishes
   function runNext(idx) {
     if (idx >= queue.length) {
-      sessionStorage.setItem(pageKey, '1');
       setTimeout(() => {
         cursor.style.animation = 'none';
         cursor.style.transition = 'opacity 0.5s ease';

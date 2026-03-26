@@ -76,9 +76,10 @@
       }, 600);
     }
 
-    const cameFromInternal = document.referrer.includes('peter-devlin.github.io');
+    const seenBoot = sessionStorage.getItem('bootSeen');
+    const cameFromInternal = document.referrer.includes('peter-devlin.github.io') || document.referrer.includes('peter-devlin.com');
 
-    if (cameFromInternal) {
+    if (seenBoot || cameFromInternal) {
       boot.style.display = 'none';
       site.classList.remove('site-hidden');
       initReveal();
@@ -95,7 +96,7 @@
           }, 30);
         }, delay);
       });
-      setTimeout(showSite, 3200);
+      setTimeout(() => { sessionStorage.setItem('bootSeen', '1'); showSite(); }, 3200);
     }
   </script>
 
